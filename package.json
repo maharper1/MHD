@@ -1,0 +1,15 @@
+{
+  "name": "MHD",
+  "version": "0.0.1",
+  "description": "Interactive map of the Madison Historic District",
+  "main": "/source/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Annette Harper",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  }
+}
