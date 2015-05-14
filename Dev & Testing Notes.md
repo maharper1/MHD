@@ -1,10 +1,16 @@
-Some issues with windows..................
-  For Python 3, the command to create an HTTP server is python -m http.server 8080
+##For testing locally on a Windows 7 system  
 
-  To run ngrok from Windows 7, I had to:
-    1. Open a command prompt, and enter the Python 3 command above.
-    2. Open a second command prompt, and run ngrok 8080.
+1. Assuming Python 3 is installed, create an HTTP server in the project directory using the following command at a command prompt.
+```
+python -m http.server 8080
+```
+2. Assuming ngrok is installed, to make your local server accessible via the web, open a command prompt and issue the following command.
+```
+ngrok 8080
+```
 
+##Build Automation
+Assuming node and the grunt cli are installed
 Grunt
   I used grunt to minify files, optimize images, etc. I should add in processHTML so that I do not need to change the file references in index.html manually, but that will have to wait till next time :)
 
@@ -27,5 +33,6 @@ Grunt
   // I did not actually use compression, either.
   // run npm install grunt-contrib-compress --save-dev
     13. run npm install grunt-contrib-htmlmin --save-dev
+npm install grunt-processhtml --save-dev
 
     Note that imagemin would not work on the jpeg image, so I compressed it manually and saved to the dist directory.
