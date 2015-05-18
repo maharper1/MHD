@@ -4,28 +4,63 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=" FILL ME IN ">
+    <meta name="description" content=" Interactive Map of the Madison Historic District ">
     <meta name="author" content=" Annette Harper ">
     <title>Madison Historic District</title>
+
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmL64rHJ7NwvrWViG_qkFyLqS1ieO7WP8">
+    </script>
+    <script async src='js/data.js'></script>
+    <script src="js/load.js"> </script>
 
     <style>
 
     </style>
 
     <script async src="http://www.google-analytics.com/analytics.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <!-- build:js js/app.min.js -->
+    <!-- build:js js/MHD.min.js -->
+
+    <script src='js/libraries/knockout-3.3.0.js'></script>
     <script async src="js/app.js"></script>
     <!-- /build -->
   </head>
 
   <body>
     <header>
-      <a href="/"><img src="img/profilepic.jpg"></a>
-      <p>Cameron Pittman<br><span>Course Developer</span></p>
+      <a href="/"><img src="images/Madison14May2015at100h.jpg"></a>
+      <p>Madison Historic District</p>
     </header>
 
+    <div id="map-canvas"></div>
+
     <div class="container">
+      <h2>Your seat reservations (<span data-bind="text: seats().length"></span>)</h2>
+
+      <table>
+          <thead><tr>
+              <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
+          </tr></thead>
+          <!-- Todo: Generate table body -->
+          <tbody data-bind="foreach: seats">
+              <tr>
+                  <td><input data-bind="value: name"/></td>
+                  <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+                  <td data-bind="text: formattedPrice"></td>
+                  <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
+              </tr>
+          </tbody>
+      </table>
+
+      <button data-bind="click: addSeat, enable: seats().length < 5">Reserve another seat</button>
+      <h3 data-bind="visible: totalSurcharge() > 0">
+          Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+      </h3>
 
 
     <footer>
