@@ -43,3 +43,4 @@ https://developers.google.com/maps/documentation/javascript/examples/marker-remo
 http://www.convertcsv.com/csv-to-json.htm
 http://stackoverflow.com/questions/3281524/resize-markers-depending-on-zoom-google-maps-v3
 http://stackoverflow.com/questions/12722925/google-maps-and-knockoutjs
+http://stackoverflow.com/questions/19028299/putting-content-banner-above-the-fixed-top-navbar

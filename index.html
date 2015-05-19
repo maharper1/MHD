@@ -8,14 +8,12 @@
     <meta name="author" content=" Annette Harper ">
     <title>Madison Historic District</title>
 
-    <style type="text/css">
-      html, body, #map { height: 100%; margin: 0; padding: 0;}
-    </style>
-
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmL64rHJ7NwvrWViG_qkFyLqS1ieO7WP8">
     </script>
     <script src='js/libraries/knockout-3.3.0.js'></script>
+    <link href='bootstrap/css/bootstrap.css' rel="stylesheet">
+    <link href='bootstrap/css/bootstrap-theme.css' rel="stylesheet">
 
 
     <!-- build:js js/MHD.min.js -->
@@ -23,24 +21,71 @@
   </head>
 
   <body>
-    <header>
-      <a href="/"><img src="images/Madison14May2015at100h.jpg"></a>
-      <p>Madison Historic District</p>
-    </header>
-
-    <div id="map" data-bind="googlemap: { locations: locations,
-                                          centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
+    <div id="header">
+      <div class="container">
+        <a href="/"><img class="img-responsive" src="images/Madison14May2015at100h.jpg" alt="View of Madison from the south"></a>
+        <h1>Madison Historic District</h1>
+      </div>
     </div>
 
-    <footer>
-      <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
-    </footer>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" id="topnavbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
+      <div class="mapContainer" data-bind="googlemap: { locations: locations,
+                                            centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
+      </div>
 
-    <script src='js/data.js'></script>
-    <script src="js/model.js"> </script>
+    <div class="footer">
+      <div class="container">
+        <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
+      </div>
+    </div>
+
+    <script>
+      $('#topnavbar').affix({
+          offset: {
+              top: $('#header').height()
+          }
+      });
+      </script>
+
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src='bootstrap/js/bootstrap.js'></script>
+    <script src='js/data.js'></script>
+    <script src="js/model.js"> </script>
+    <link href='css/style.css' rel="stylesheet">
     <!-- //--- Moved per evaluator's suggestion -->
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
