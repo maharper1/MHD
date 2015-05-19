@@ -9,25 +9,16 @@
     <title>Madison Historic District</title>
 
     <style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+      html, body, #map { height: 100%; margin: 0; padding: 0;}
     </style>
-    <script type="text/javascript"
+
+    <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmL64rHJ7NwvrWViG_qkFyLqS1ieO7WP8">
     </script>
-    <script async src='js/data.js'></script>
-    <script src="js/load.js"> </script>
+    <script src='js/libraries/knockout-3.3.0.js'></script>
 
-    <style>
-
-    </style>
-
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <!-- build:js js/MHD.min.js -->
-
-    <script src='js/libraries/knockout-3.3.0.js'></script>
-    <script async src="js/app.js"></script>
     <!-- /build -->
   </head>
 
@@ -37,52 +28,19 @@
       <p>Madison Historic District</p>
     </header>
 
-    <div id="map-canvas"></div>
-
-    <div class="container">
-      <h2>Your seat reservations (<span data-bind="text: seats().length"></span>)</h2>
-
-      <table>
-          <thead><tr>
-              <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
-          </tr></thead>
-          <!-- Todo: Generate table body -->
-          <tbody data-bind="foreach: seats">
-              <tr>
-                  <td><input data-bind="value: name"/></td>
-                  <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
-                  <td data-bind="text: formattedPrice"></td>
-                  <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
-              </tr>
-          </tbody>
-      </table>
-
-      <button data-bind="click: addSeat, enable: seats().length < 5">Reserve another seat</button>
-      <h3 data-bind="visible: totalSurcharge() > 0">
-          Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
-      </h3>
-
+    <div id="map" data-bind="googlemap: { locations: locations,
+                                          centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
+    </div>
 
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
 
-    <!-- //--- Function to load style.css asynchonously.
-               From https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery -->
-    <script>
-      var cb = function() {
-        var l = document.createElement('link'); l.rel = 'stylesheet';
-        <!-- build:css style.min.css -->
-        l.href = 'css/style.css';
-        <!-- /build -->
-        var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(cb);
-      else window.addEventListener('load', cb);
-    </script>
 
+    <script src='js/data.js'></script>
+    <script src="js/model.js"> </script>
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- //--- Moved per evaluator's suggestion -->
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;

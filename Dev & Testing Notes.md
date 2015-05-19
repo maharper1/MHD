@@ -34,5 +34,12 @@ Grunt
   // run npm install grunt-contrib-compress --save-dev
     13. run npm install grunt-contrib-htmlmin --save-dev
 npm install grunt-processhtml --save-dev
+npm install grunt-changed --save-dev
 
     Note that imagemin would not work on the jpeg image, so I compressed it manually and saved to the dist directory.
+
+http://learn.knockoutjs.com/#/?tutorial=webmail
+https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+http://www.convertcsv.com/csv-to-json.htm
+http://stackoverflow.com/questions/3281524/resize-markers-depending-on-zoom-google-maps-v3
+http://stackoverflow.com/questions/12722925/google-maps-and-knockoutjs
