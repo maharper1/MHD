@@ -29,7 +29,7 @@ function getIconIndex(addressStyle){
 
 function addMarker(loc) {
 	var img = markerIconData[getIconIndex(loc.Style)];
-	var initSize = 0.05;
+	var initSize = 0.03;
   	var markerIcon = {
   		url: img.url,
   		size: new google.maps.Size(img.width * initSize, img.height * initSize),

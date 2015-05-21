@@ -1,7 +1,7 @@
     markerIconData = [
-      {addressStyle: "Federal", url: 'images/Federal.png', height: 138, width: 96},
-      {addressStyle: "Italianate", url: 'images/Italianate.png', height: 138, width: 96},
-      {addressStyle: "Vernacular: Shotgun", url: 'images/Shotgun.png', height: 89, width: 89},
+      {addressStyle: "Federal", url: 'images/federal-lg.png', height: 250, width: 192},
+      {addressStyle: "Italianate", url: 'images/italianate-lg.png', height: 225, width: 209},
+      {addressStyle: "Vernacular: Shotgun", url: 'images/shotgun-lg.png', height: 150, width: 235},
       {addressStyle: "Art Deco", url: 'images/Shotgun.png', height: 89, width: 89},
       {addressStyle: "Barn", url: 'images/Shotgun.png', height: 89, width: 89},
       {addressStyle: "Bridge", url: 'images/Shotgun.png', height: 89, width: 89},
