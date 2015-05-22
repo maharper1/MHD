@@ -27,6 +27,10 @@ function getIconIndex(addressStyle){
 	}
 }
 
+function redrawMap(){
+	google.maps.event.trigger(map, "resize");
+}
+
 function addMarker(loc) {
 	var img = markerIconData[getIconIndex(loc.Style)];
 	var initSize = 0.03;
@@ -68,6 +72,10 @@ function resizeIcons() {
 	last_zoom = zoom;
 }
 
+function centerMarker(loc){
+	map.setCenter(google.maps.LatLng(loc.latitude, loc.longitude));
+}
+
 ko.bindingHandlers.googlemap = {
     init: function (element, valueAccessor) {
         var value = valueAccessor();
@@ -88,8 +96,12 @@ ko.bindingHandlers.googlemap = {
     }
 };
 
-var mapViewModel =  {
-    locations: ko.observableArray(markerData)
+function mapViewModel()  {
+	var self =  this;
+    self.locations = ko.observableArray(markerData);
+    self.centerOnLoc = function(loc){
+    	centerMarker(loc);
+    }
 }
 
-ko.applyBindings(mapViewModel);
+ko.applyBindings(new mapViewModel());
