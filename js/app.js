@@ -16,8 +16,8 @@ $('#toggle-button').click(function () {
     redrawMap();
 });
 
-$("#home").click(function() {
-  alert('home clicked');
+$("#contact").click(function() {
+  alert('contact clicked');
 });
 
 $("#about").click(function() {

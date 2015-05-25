@@ -31,6 +31,13 @@ function redrawMap(){
 	google.maps.event.trigger(map, "resize");
 }
 
+function showDetails(marker, loc) {
+	//return function() {
+        infowindow.setContent(loc.Address);
+        infowindow.open(map, marker);
+	//}
+}
+
 function addMarker(loc) {
 	var img = markerIconData[getIconIndex(loc.Style)];
 	var initSize = 0.03;
@@ -46,12 +53,7 @@ function addMarker(loc) {
       icon: markerIcon
     });
 
-    google.maps.event.addListener(marker, 'click', (function(marker) {
-    	return function() {
-	        infowindow.setContent(loc.Address);
-	        infowindow.open(map, marker);
-    	}
-    })(marker));
+    google.maps.event.addListener(marker, 'click', function() {return showDetails(marker, loc)});
 
     markers.push(marker);
 }
@@ -73,7 +75,9 @@ function resizeIcons() {
 }
 
 function centerMarker(loc){
-	map.setCenter(google.maps.LatLng(loc.latitude, loc.longitude));
+	map.setCenter(new google.maps.LatLng(loc.latitude, loc.longitude));
+	map.setZoom(18);
+	showDetails(markers[mapViewModel.locations.indexOf(loc)], loc);//();
 }
 
 ko.bindingHandlers.googlemap = {
@@ -96,12 +100,11 @@ ko.bindingHandlers.googlemap = {
     }
 };
 
-function mapViewModel()  {
-	var self =  this;
-    self.locations = ko.observableArray(markerData);
-    self.centerOnLoc = function(loc){
+var mapViewModel = {
+    locations: ko.observableArray(markerData),
+    centerOnLoc: function(loc){
     	centerMarker(loc);
     }
 }
 
-ko.applyBindings(new mapViewModel());
+ko.applyBindings(mapViewModel);

@@ -41,6 +41,7 @@ body {
 #propertyList {
 	overflow-y: scroll;
 	height: 100%;
+  padding-left: 6px;
 }
 
 @media (max-width: 405px) {

@@ -57,8 +57,12 @@
         </div><!--/MHDmap -->
         <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
           <div id="propertyList">
-            <ul data-bind="foreach: locations">
-              <li data-bind="click: $parent.centerMarker, text: Address"></li>
+            <ul class="list-unstyled" data-bind="foreach: locations">
+              <li>
+                <button class="btn-link" role="link" data-bind="click: $parent.centerOnLoc">
+                  <span data-bind="text: Address"></span>
+                </button>
+              </li>
             </ul>
           </div><!--/propertyList-->
         </div><!--/propertyList-wrapper-->
