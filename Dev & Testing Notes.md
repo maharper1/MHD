@@ -44,3 +44,6 @@ http://www.convertcsv.com/csv-to-json.htm
 http://stackoverflow.com/questions/3281524/resize-markers-depending-on-zoom-google-maps-v3
 http://stackoverflow.com/questions/12722925/google-maps-and-knockoutjs
 http://stackoverflow.com/questions/19028299/putting-content-banner-above-the-fixed-top-navbar
+http://www.prepbootstrap.com/bootstrap-template/searchnavbar
+http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
+http://jsfiddle.net/tyrsius/67kgm/

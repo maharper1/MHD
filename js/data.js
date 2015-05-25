@@ -24,6 +24,14 @@
       {addressStyle: "Vernacular: Other", url: 'images/Shotgun.png', height: 89, width: 89}
     ];
 
+    streets = ["All", "1st", "2nd", "3rd", "4th", "5th", "6th", "Adams", "Baltimore", "Blaine",
+               "Broadway", "Carpet", "Central", "Cragmont", "East", "Elm", "Ferry", "Fillmore",
+               "Fountain", "Gerry", "Harrison", "Jefferson", "King's Daughters' Hospital",
+               "Lafayette", "Lincoln", "Madison", "Main", "Marine", "McCauley", "McCormick",
+               "McIntire", "Michigan", "Mill", "Milton", "Mulberry", "Park", "Plum", "Poplar",
+               "Presbyterian", "Roosevelt", "Saddletree", "Sering", "Shamrock", "St. Michael's",
+               "Telegraph Hill", "Vaughn", "Vernon", "Vine", "Wall", "Walnut", "West", ""];
+
     markerData = [
       {
         "Address":"1 Carpet Alley",
@@ -19801,7 +19809,7 @@
         "Notes":""
       },
       {
-        "Address":"320 West Mcintire Street",
+        "Address":"320 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -19820,8 +19828,8 @@
         "longitude":-85.396516,
         "Street Number":"320",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -20201,7 +20209,7 @@
         "Notes":""
       },
       {
-        "Address":"322 West Mcintire Street",
+        "Address":"322 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -20220,8 +20228,8 @@
         "longitude":-85.396733,
         "Street Number":"322",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -20526,7 +20534,7 @@
         "Notes":""
       },
       {
-        "Address":"324 West Mcintire Street",
+        "Address":"324 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -20545,8 +20553,8 @@
         "longitude":-85.396545,
         "Street Number":"324",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -40076,7 +40084,7 @@
         "Notes":"The impressive Federal residence at 732 W. Main Street was built by Milton Stapp, Madison's Mayor from 1850-53 and Indiana State Lieutenant Governor from 1928-31. Likely constructed between 1828 and 1832, the two-story home has been through many subsequent changes including major alterations ca. 1840 and in 1906. It has a rubble stone foundation and is currently rectangular in configuration. The brick walls support a low-pitched hipped roof with an iron balustrade and four chimneys. A simple cornice surrounds the roofline. The full light main door has side and upper transom lights. The modern twelve over twelve light windows have brick lintels and are in openings that originally stretched to floor level."
       },
       {
-        "Address":"733 North Jefferson Street",
+        "Address":"733 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -40095,7 +40103,7 @@
         "longitude":-85.37779,
         "Street Number":"733",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -40151,7 +40159,7 @@
         "Notes":""
       },
       {
-        "Address":"735 North Jefferson Street",
+        "Address":"735 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -40170,7 +40178,7 @@
         "longitude":-85.377738,
         "Street Number":"735",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -40351,7 +40359,7 @@
         "Notes":""
       },
       {
-        "Address":"739 North Jefferson Street",
+        "Address":"739 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -40370,7 +40378,7 @@
         "longitude":-85.377522,
         "Street Number":"739",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -40451,7 +40459,7 @@
         "Notes":"The two-story home at 740 W. Main Street is a large Federal home with classic details. The brick building has a long rectangular plan and was built during the 1850s. It has a one story flat roofed portico with Doric columns and a decorative cornice in the center of its five bays. The tall half light panel door has side and upper transom lights. The windows are six over six light and have flat dressed stone lintels and sills. The low-pitched roof has gable end chimneys and a very shallow dentilled cornice. An iron fence likely made in Madison in 1865 surrounds its yard."
       },
       {
-        "Address":"741 North Jefferson Street",
+        "Address":"741 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -40470,7 +40478,7 @@
         "longitude":-85.377539,
         "Street Number":"741",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -40751,7 +40759,7 @@
         "Notes":""
       },
       {
-        "Address":"747 North Jefferson Street",
+        "Address":"747 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -40770,7 +40778,7 @@
         "longitude":-85.377609,
         "Street Number":"747",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41026,7 +41034,7 @@
         "Notes":"The Prairie style home at 750 W. Main Street is one of the few of its style in Madison, Indiana. Constructed around 1920, this irregular massed home has a prominent porte-cochere. Massive flared pillars support the very low-pitched roof of the porch and porte-cochere. The pillars are of stucco and clapboard siding covers the house. The large wood door has three diagonal lights. The windows are arranged in horizontal rows and are mostly two over two light double hung. The very low-pitched front gable roof has exposed rafters . A partial second story has a similar roofline."
       },
       {
-        "Address":"751 North Jefferson Street",
+        "Address":"751 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41045,7 +41053,7 @@
         "longitude":-85.377805,
         "Street Number":"751",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41076,7 +41084,7 @@
         "Notes":""
       },
       {
-        "Address":"752 North Jefferson Street",
+        "Address":"752 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41095,7 +41103,7 @@
         "longitude":-85.377116,
         "Street Number":"752",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41151,7 +41159,7 @@
         "Notes":""
       },
       {
-        "Address":"753 North Jefferson Street",
+        "Address":"753 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41170,7 +41178,7 @@
         "longitude":-85.377809,
         "Street Number":"753",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41226,7 +41234,7 @@
         "Notes":""
       },
       {
-        "Address":"754 North Jefferson Street",
+        "Address":"754 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41245,7 +41253,7 @@
         "longitude":-85.377072,
         "Street Number":"754",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41351,7 +41359,7 @@
         "Notes":""
       },
       {
-        "Address":"756 North Jefferson Street",
+        "Address":"756 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41370,7 +41378,7 @@
         "longitude":-85.377025,
         "Street Number":"756",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41401,7 +41409,7 @@
         "Notes":""
       },
       {
-        "Address":"757 North Jefferson Street",
+        "Address":"757 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41420,7 +41428,7 @@
         "longitude":-85.377817,
         "Street Number":"757",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41451,7 +41459,7 @@
         "Notes":""
       },
       {
-        "Address":"758 North Jefferson Street",
+        "Address":"758 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41470,7 +41478,7 @@
         "longitude":-85.376983,
         "Street Number":"758",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -41551,7 +41559,7 @@
         "Notes":""
       },
       {
-        "Address":"760 North Jefferson Street",
+        "Address":"760 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -41570,7 +41578,7 @@
         "longitude":-85.376878,
         "Street Number":"760",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -42651,7 +42659,7 @@
         "Notes":""
       },
       {
-        "Address":"806 North Jefferson Street",
+        "Address":"806 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -42670,7 +42678,7 @@
         "longitude":-85.376845,
         "Street Number":"806",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -42926,7 +42934,7 @@
         "Notes":""
       },
       {
-        "Address":"808 North Jefferson Street",
+        "Address":"808 Jefferson Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -42945,7 +42953,7 @@
         "longitude":-85.377305,
         "Street Number":"808",
         "Modifier":"",
-        "Street Direction":"North",
+        "Street Direction":"",
         "Street":"Jefferson",
         "Street Type":"Street",
         "Notes":""
@@ -45851,7 +45859,7 @@
         "Notes":""
       },
       {
-        "Address":"900 West Mcintire Street",
+        "Address":"900 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -45870,8 +45878,8 @@
         "longitude":-85.396646,
         "Street Number":"900",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -46001,7 +46009,7 @@
         "Notes":""
       },
       {
-        "Address":"901 West Mcintire Street",
+        "Address":"901 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -46020,8 +46028,8 @@
         "longitude":-85.396646,
         "Street Number":"901",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -46176,7 +46184,7 @@
         "Notes":""
       },
       {
-        "Address":"902 West Mcintire Street",
+        "Address":"902 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"Mobile Home",
         "Freestanding or Other":"",
@@ -46195,8 +46203,8 @@
         "longitude":-85.396646,
         "Street Number":"902",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
@@ -46276,7 +46284,7 @@
         "Notes":""
       },
       {
-        "Address":"903 West Mcintire Street",
+        "Address":"903 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"Mobile Home",
         "Freestanding or Other":"",
@@ -46295,13 +46303,13 @@
         "longitude":-85.396646,
         "Street Number":"903",
         "Modifier":"",
-        "Street Direction":"West",
-        "Street":"Mcintire",
+        "Street Direction":"",
+        "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""
       },
       {
-        "Address":"904 1/2 West McIntire Street",
+        "Address":"904 1/2 McIntire Street",
         "Historic Name of Resource":"",
         "Building Type":"House",
         "Freestanding or Other":"",
@@ -46320,7 +46328,7 @@
         "longitude":-85.396646,
         "Street Number":"904",
         "Modifier":"1/2",
-        "Street Direction":"West",
+        "Street Direction":"",
         "Street":"McIntire",
         "Street Type":"Street",
         "Notes":""

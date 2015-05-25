@@ -43,9 +43,16 @@
           <li><a id="contact" href="#">Contact</a></li>
           <li><a id="toggle-button" href="#">Hide Property List</a></li>
         </ul>
-<!--         <button type="button" id="toggle-button">
-                Toggle Property List
-        </button> -->
+        <div>
+          <form class="navbar-form" role="search">
+            <div class="input-group">
+              <input id="searchTerm" type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </span>
+            </div><!-- /input-group -->
+          </form>
+        </div>
       </div><!--/.nav-collapse -->
     </nav>
 
@@ -56,8 +63,18 @@
                         centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
         </div><!--/MHDmap -->
         <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
+          <div id="addressFilter">
+            <p> Filter
+              Street: <select data-bind="options: streets, value: searchSt"></select>
+              Number: <input data-bind="value: searchNo, valueUpdate: 'afterkeydown'" />
+              Direction:
+              <span><input type="checkbox" value="East" data-bind="checked: searchDirs" /> East</span>
+              <span><input type="checkbox" value="West" data-bind="checked: searchDirs" /> West</span>
+              <span><input type="checkbox" value="" data-bind="checked: searchDirs" /> North/South</span>
+            </p>
+          </div>
           <div id="propertyList">
-            <ul class="list-unstyled" data-bind="foreach: locations">
+            <ul class="list-unstyled" data-bind="foreach: filteredLocs">
               <li>
                 <button class="btn-link" role="link" data-bind="click: $parent.centerOnLoc">
                   <span data-bind="text: Address"></span>

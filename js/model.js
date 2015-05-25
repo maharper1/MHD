@@ -32,10 +32,8 @@ function redrawMap(){
 }
 
 function showDetails(marker, loc) {
-	//return function() {
         infowindow.setContent(loc.Address);
         infowindow.open(map, marker);
-	//}
 }
 
 function addMarker(loc) {
@@ -74,10 +72,10 @@ function resizeIcons() {
 	last_zoom = zoom;
 }
 
-function centerMarker(loc){
+function centerMarker(loc, markerIndex){
 	map.setCenter(new google.maps.LatLng(loc.latitude, loc.longitude));
 	map.setZoom(18);
-	showDetails(markers[mapViewModel.locations.indexOf(loc)], loc);//();
+	showDetails(markerIndex, loc);
 }
 
 ko.bindingHandlers.googlemap = {
@@ -100,11 +98,36 @@ ko.bindingHandlers.googlemap = {
     }
 };
 
-var mapViewModel = {
-    locations: ko.observableArray(markerData),
-    centerOnLoc: function(loc){
-    	centerMarker(loc);
-    }
+ko.utils.stringStartsWith = function(string, startsWith) {
+    string = string || "";
+    if (startsWith.length > string.length) return false;
+    return string.substring(0, startsWith.length) === startsWith;
+};
+
+var mapViewModel = function() {
+	var self = this;
+    self.locations = ko.observableArray(markerData);
+    self.centerOnLoc = function(loc){centerMarker(loc, markers[self.locations().indexOf(loc)]);};
+    // firstMatch: ko.computed(function () {
+    // 	if (!searchTerm){
+    // 		return null;
+    // 	} else {
+    // 		return ko.utils.arrayFirst(locations.filteredItems(), function(item){
+    // 			return ko.utils.stringStartsWith(item.Address().toLowerCase(),
+    // 			       searchTerm.toLowerCase());
+    // 		});
+    // 	}
+    // });
+	self.searchNo = ko.observable('');
+	self.searchSt = ko.observable('All');
+	self.searchDirs = ko.observableArray(["East","West",""]);
+    self.filteredLocs = ko.computed(function(){
+		return ko.utils.arrayFilter(self.locations(), function(loc) {
+        	return (self.searchNo().length == 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo()))
+        		&& (self.searchDirs().indexOf(loc["Street Direction"]) > -1 )
+        		&& (self.searchSt() == 'All' || self.searchSt() == loc["Street"]);
+		});
+	})
 }
 
-ko.applyBindings(mapViewModel);
+ko.applyBindings(new mapViewModel);
