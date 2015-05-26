@@ -32,8 +32,49 @@ function redrawMap(){
 }
 
 function showDetails(marker, loc) {
-        infowindow.setContent(loc.Address);
-        infowindow.open(map, marker);
+	var style = loc["Style"];
+	var dateBuilt = loc["StartDate"];
+	var heading = loc["Address"];
+	var c, nc, notes, rating;
+	if (loc["Historic Name of Resource"].length > 0){
+		heading = '<h4>' + loc["Historic Name of Resource"] + '</h4><br>' + heading;
+	}
+	if (loc["#C"] != null) {c = loc["#C"]} else {c=0}
+	if (loc["#N/C"] != null) {nc = loc["#N/C"]} else {nc=0}
+	if (loc["NHL Rating"] === "N/C") {
+		rating = "<b>Non-Contributing</b> (" + nc + ")"
+	} else {
+		rating = "<b>Contributing</b> (" + c + ")"
+		if (loc["#N/C"] != null) {
+			rating = rating + ", Non-Contributing (" + nc + ")"
+		}
+	}
+	if (loc["Approximate"] === "TRUE"){
+		dateBuilt = "~" + dateBuilt;
+	}
+	if (loc["Range"] === "TRUE"){
+		dateBuilt = dateBuilt + ' - ' + loc["EndDate"];
+	}
+	if (loc["SubStyle"] != "None") {
+		style = style + ': ' + loc["SubStyle"];
+	}
+	if (loc["Notes"].length > 0) {
+		notes = '<hr><p>'+ loc["Notes"] + '</p>';
+	} else {
+		notes = '';
+	}
+	var content =
+		'<div id="infowindow" class="panel panel-info">' +
+		'<div class="panel-heading">'+ heading +'</div>' +
+        '<div class="panel-body">'+
+        'Building Type: '+ loc["Building Type"] +
+        '<br>Style: '+ style +
+        '<br>Date: '+ dateBuilt +
+        '<br>NHL Rating: '+ rating +
+        notes +
+    	'</div>';
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
 }
 
 function addMarker(loc) {

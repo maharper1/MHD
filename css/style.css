@@ -9,6 +9,11 @@ body {
 #header {
   height: 100px;
   background-image: url(../images/Madison14May2015at100h.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#houseNo {
+  width: 40px;
 }
 
 .footer {
@@ -18,6 +23,10 @@ body {
 
 .container-fluid {
 	height: calc(100% - 51px - 100px);
+}
+/* Remove padding from nested columns*/
+.row > div[class*="col-"] {
+  padding: 0;
 }
 .full-height {
 	height: 100%;
@@ -33,15 +42,17 @@ body {
 .navbar-brand {
   font-family: 'Old Standard TT', serif; font-weight: 700; font-size: 20px;
 }
+button {
+  text-align: left;
+}
 
 #propertyList-wrapper {
-	padding: 0px;
+  padding: 6px;
 	height: 100%;
 }
 #propertyList {
 	overflow-y: scroll;
-	height: 100%;
-  padding-left: 6px;
+	height: calc(100% -  175px);
 }
 
 @media (max-width: 405px) {

@@ -4,13 +4,13 @@ var $mapContainer = $('#MHDmap');
 
 $('#toggle-button').click(function () {
     if ($propertyList.is(':visible')) {
-        $mapContainer.removeClass('col-xs-7 col-sm-8 col-md-9 col-lg-10').addClass('col-lg-12');
-        $propertyList.removeClass('col-xs-5 col-sm-4 col-md-3 col-lg-2').addClass('hidden');
+        $mapContainer.removeClass('col-xs-7 col-sm-8 col-md-8 col-lg-9').addClass('col-lg-12');
+        $propertyList.removeClass('col-xs-5 col-sm-4 col-md-4 col-lg-3').addClass('hidden');
         this.innerHTML = "Show Property List";
     }
     else {
-        $mapContainer.removeClass('col-lg-12').addClass('col-xs-7 col-sm-8 col-md-9 col-lg-10');
-        $propertyList.removeClass('hidden').addClass('col-xs-5 col-sm-4 col-md-3 col-lg-2');
+        $mapContainer.removeClass('col-lg-12').addClass('col-xs-7 col-sm-8 col-md-8 col-lg-9');
+        $propertyList.removeClass('hidden').addClass('col-xs-5 col-sm-4 col-md-4 col-lg-3');
         this.innerHTML = "Hide Property List"
     }
     redrawMap();
