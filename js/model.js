@@ -31,7 +31,7 @@ function redrawMap(){
 	google.maps.event.trigger(map, "resize");
 }
 
-function showDetails(marker, loc) {
+function showDetails(loc) {
 	var style = loc["Style"];
 	var dateBuilt = loc["StartDate"];
 	var heading = loc["Address"];
@@ -74,7 +74,7 @@ function showDetails(marker, loc) {
         notes +
     	'</div>';
     infowindow.setContent(content);
-    infowindow.open(map, marker);
+    infowindow.open(map, loc._mapMarker);
 }
 
 function addMarker(loc) {
@@ -91,19 +91,18 @@ function addMarker(loc) {
       title: loc.Address,
       icon: markerIcon
     });
+    loc._mapMarker = marker;
 
-    google.maps.event.addListener(marker, 'click', function() {return showDetails(marker, loc)});
-
-    markers.push(marker);
+    google.maps.event.addListener(marker, 'click', function() {return showDetails(loc)});
 }
 
-function resizeIcons() {
+function resizeIcons(locations) {
 	var zoom = map.getZoom();
 	var changeInZoom = zoom - last_zoom;
 
-	for (i=0; i < markers.length; i++){
-		curIcon = markers[i].getIcon();
-		markers[i].setIcon({
+	for (i=0; i < locations.length; i++){
+		curIcon = locations[i]._mapMarker.getIcon();
+		locations[i]._mapMarker.setIcon({
 			url: curIcon.url,
 			scaledSize: new google.maps.Size(
 				curIcon.size.width * Math.pow(2,changeInZoom),
@@ -113,14 +112,14 @@ function resizeIcons() {
 	last_zoom = zoom;
 }
 
-function centerMarker(loc, markerIndex){
+function centerMarker(loc){
 	map.setCenter(new google.maps.LatLng(loc.latitude, loc.longitude));
 	map.setZoom(18);
-	showDetails(markerIndex, loc);
+	showDetails(loc);
 }
 
 ko.bindingHandlers.googlemap = {
-    init: function (element, valueAccessor) {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
         var value = valueAccessor();
         var mapOptions = {
             zoom: value.zoom,
@@ -129,13 +128,13 @@ ko.bindingHandlers.googlemap = {
             }
         map = new google.maps.Map(element, mapOptions);
 
-        markers = [];
+        var locations = viewModel.locations(); //value.filteredLocs();
         infowindow = new google.maps.InfoWindow();
-        for (var loc in value.locations()) {
-            addMarker(value.locations()[loc]);
+        for (var loc in locations) {
+            addMarker(locations[loc]);
         }
         last_zoom = value.zoom;
-        google.maps.event.addListener(map, 'zoom_changed', resizeIcons);
+        google.maps.event.addListener(map, 'zoom_changed', function(){resizeIcons(locations)});
     }
 };
 
@@ -148,25 +147,25 @@ ko.utils.stringStartsWith = function(string, startsWith) {
 var mapViewModel = function() {
 	var self = this;
     self.locations = ko.observableArray(markerData);
-    self.centerOnLoc = function(loc){centerMarker(loc, markers[self.locations().indexOf(loc)]);};
-    // firstMatch: ko.computed(function () {
-    // 	if (!searchTerm){
-    // 		return null;
-    // 	} else {
-    // 		return ko.utils.arrayFirst(locations.filteredItems(), function(item){
-    // 			return ko.utils.stringStartsWith(item.Address().toLowerCase(),
-    // 			       searchTerm.toLowerCase());
-    // 		});
-    // 	}
-    // });
+    self.centerOnLoc = function(loc){centerMarker(loc);};
 	self.searchNo = ko.observable('');
 	self.searchSt = ko.observable('All');
 	self.searchDirs = ko.observableArray(["East","West",""]);
     self.filteredLocs = ko.computed(function(){
+    	//for (var loc in self.locations) {loc._visible = false;}
 		return ko.utils.arrayFilter(self.locations(), function(loc) {
-        	return (self.searchNo().length == 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo()))
+			var found =
+        		(self.searchNo().length == 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo()))
         		&& (self.searchDirs().indexOf(loc["Street Direction"]) > -1 )
         		&& (self.searchSt() == 'All' || self.searchSt() == loc["Street"]);
+        	if (typeof loc._mapMarker != 'undefined'){
+        		if (found) {
+        			loc._mapMarker.setVisible(true);
+        		} else {
+        			loc._mapMarker.setVisible(false);
+        		}
+        	}
+        	return found;
 		});
 	})
 }

@@ -40,7 +40,7 @@
         <ul class="nav navbar-nav">
           <li><a id="about" href="#">About</a></li>
           <li><a id="contact" href="#">Contact</a></li>
-          <li><a id="toggle-button" href="#">Hide Property List</a></li>
+          <li><a id="toggle-button" href="#">Hide Address List</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </nav>
@@ -48,7 +48,7 @@
     <div class="container-fluid">
       <div class="row full-height">
         <div id="MHDmap" class="mapContainer col-xs-7 col-sm-8 col-md-8 col-lg-9"
-             data-bind="googlemap: { locations: locations,
+             data-bind="googlemap: { filteredLocs: filteredLocs,
                         centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
         </div><!--/MHDmap -->
         <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-4 col-lg-3">
