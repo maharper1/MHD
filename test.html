@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+      <style type="text/css">
+        html { height: 100% }
+        body { height: 100%; margin: 0; padding: 0 }
+        #map_canvas { height: 100% }
+      </style>
+      <script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCDhRcM-le3JTKhoG8hxgwjbdJ19RXn8-I&sensor=false">
+      </script>
+    <script>
+        var geocoder;
+        var map;
+        addresses = [{address: '212 West 2nd Street, Madison, IN 47250', geoCode: null},
+                     {address: '214 West 2nd Street, Madison, IN 47250', geoCode: null}];
+        //alert('Start ' + addresses[0].address + addresses[0].geoCode);
+        //var LatLong; // = new google.maps.LatLng;
+        var directionsService = null;
+
+        function initialize() {
+
+          directionsService = new google.maps.DirectionsService();
+          geocoder = new google.maps.Geocoder();
+          var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(38.735653, -85.38157),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+          //alert('Before ' + LatLong); //.lat() +' '+ LatLong.lng());
+          //LatLong =
+          //alert('Init ' + addresses[0].address + addresses[0].geoCode);
+          for (var address in addresses) {
+            //alert('Loop ' + addresses[address].address + addresses[address].geoCode);
+
+            streetGeoCode(addresses[address]);
+          }
+
+          //alert('After ' + addresses[0].address + addresses[0].geoCode);
+        }
+
+        function streetGeoCode(rec) {
+          var request = {
+              origin: rec.address,
+              destination: rec.address,
+              travelMode: google.maps.TravelMode.DRIVING
+            };
+            curRec = rec;
+          directionsService.route(request, callbackFactory(rec));
+        }
+
+        callbackFactory = function(rec) {
+        return function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              var LatLong = response.routes[0].legs[0].start_location;
+              map.setCenter(LatLong);
+              var marker = new google.maps.Marker({
+                map: map,
+                title: 'LL' + response.routes[0].legs[0].start_address + ' ' + LatLong,
+                position: LatLong
+              });
+              rec.geoCode = LatLong;
+              alert('After2 ' + addresses[0].address + addresses[0].geoCode);
+             }
+          };
+        }
+
+
+
+      </script>
+    </head>
+    <body onload="initialize()">
+      <div id="map_canvas" style="height:90%;top:30px"></div>
+    </body>
+  </html>

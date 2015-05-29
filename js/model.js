@@ -1,3 +1,6 @@
+//var directionsService = null;
+
+
 function getIconIndex(addressStyle){
 	switch (addressStyle) {
 	  case "Federal": return 0;
@@ -31,10 +34,46 @@ function redrawMap(){
 	google.maps.event.trigger(map, "resize");
 }
 
+ function headOn(loc){
+	var result;
+ 	if (loc["Street Direction"] === "East"){
+		if (loc["Street Number"]%2 == 0) {
+			result = 180;
+		} else {
+			result = 0;
+		}
+ 	} else if (loc["Street Direction"] === "West") {
+		if (loc["Street Number"]%2 == 0) {
+			result = 22;
+		} else {
+			result = 202;
+		}
+ 	} else {
+		if (true) { //east of west
+			if (loc["Street Number"]%2 == 0) {
+				result = 90;
+			} else {
+				result = 270;
+			}
+		} else {
+			if (loc["Street Number"]%2 == 0) {
+				result = 112;
+			} else {
+				result = 292;
+			}
+		}
+ 	}
+ 	return result;
+ }
+
 function showDetails(loc) {
+	var googleAddress = loc.latitude + ',' + loc.longitude;
+	var streetviewURL = 'http://maps.googleapis.com/maps/api/streetview?'+
+	      'size=100x100&location=' + googleAddress;
 	var style = loc["Style"];
 	var dateBuilt = loc["StartDate"];
 	var heading = loc["Address"];
+	var streetLoc = loc["streetGeo"].latitude + ', ' + loc["streetGeo"].longitude;
 	var c, nc, notes, rating;
 	if (loc["Historic Name of Resource"].length > 0){
 		heading = '<h4>' + loc["Historic Name of Resource"] + '</h4><br>' + heading;
@@ -65,13 +104,18 @@ function showDetails(loc) {
 	}
 	var content =
 		'<div id="infowindow" class="panel panel-info">' +
-		'<div class="panel-heading">'+ heading +'</div>' +
+		'<div class="panel-heading">'+ heading +
+		'<img src="' + streetviewURL + '">' +
+		'</div>' +
         '<div class="panel-body">'+
         'Building Type: '+ loc["Building Type"] +
         '<br>Style: '+ style +
         '<br>Date: '+ dateBuilt +
         '<br>NHL Rating: '+ rating +
         notes +
+    	'</div>' +
+    	'<div class="panel-footer">' + 'Footer' +
+    	streetLoc +
     	'</div>';
     infowindow.setContent(content);
     infowindow.open(map, loc._mapMarker);
@@ -92,7 +136,10 @@ function addMarker(loc) {
       icon: markerIcon
     });
     loc._mapMarker = marker;
-
+    if (loc.streetGeo === undefined && limit < 100) {
+    	streetGeoCode(loc);
+    	limit++;
+    }
     google.maps.event.addListener(marker, 'click', function() {return showDetails(loc)});
 }
 
@@ -130,6 +177,7 @@ ko.bindingHandlers.googlemap = {
 
         var locations = viewModel.locations(); //value.filteredLocs();
         infowindow = new google.maps.InfoWindow();
+        limit = 0;
         for (var loc in locations) {
             addMarker(locations[loc]);
         }
@@ -152,7 +200,6 @@ var mapViewModel = function() {
 	self.searchSt = ko.observable('All');
 	self.searchDirs = ko.observableArray(["East","West",""]);
     self.filteredLocs = ko.computed(function(){
-    	//for (var loc in self.locations) {loc._visible = false;}
 		return ko.utils.arrayFilter(self.locations(), function(loc) {
 			var found =
         		(self.searchNo().length == 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo()))
