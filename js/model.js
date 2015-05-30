@@ -34,42 +34,13 @@ function redrawMap(){
 	google.maps.event.trigger(map, "resize");
 }
 
- function headOn(loc){
-	var result;
- 	if (loc["Street Direction"] === "East"){
-		if (loc["Street Number"]%2 == 0) {
-			result = 180;
-		} else {
-			result = 0;
-		}
- 	} else if (loc["Street Direction"] === "West") {
-		if (loc["Street Number"]%2 == 0) {
-			result = 22;
-		} else {
-			result = 202;
-		}
- 	} else {
-		if (true) { //east of west
-			if (loc["Street Number"]%2 == 0) {
-				result = 90;
-			} else {
-				result = 270;
-			}
-		} else {
-			if (loc["Street Number"]%2 == 0) {
-				result = 112;
-			} else {
-				result = 292;
-			}
-		}
- 	}
- 	return result;
- }
-
 function showDetails(loc) {
-	var googleAddress = loc.latitude + ',' + loc.longitude;
+	var bearing = google.maps.geometry.spherical.computeHeading(
+		new google.maps.LatLng(loc["streetGeo"].latitude, loc["streetGeo"].longitude),
+		new google.maps.LatLng(loc["latitude"], loc["longitude"]));
 	var streetviewURL = 'http://maps.googleapis.com/maps/api/streetview?'+
-	      'size=100x100&location=' + googleAddress;
+	      'size=200x200&location=' + loc["streetGeo"].latitude+','+loc["streetGeo"].longitude +
+	      '&heading='+bearing+'&fov=60&pitch=10';
 	var style = loc["Style"];
 	var dateBuilt = loc["StartDate"];
 	var heading = loc["Address"];
@@ -123,23 +94,22 @@ function showDetails(loc) {
 
 function addMarker(loc) {
 	var img = markerIconData[getIconIndex(loc.Style)];
-	var initSize = 0.03;
+	var initSize = 0.015;
   	var markerIcon = {
   		url: img.url,
   		size: new google.maps.Size(img.width * initSize, img.height * initSize),
   		scaledSize: new google.maps.Size(img.width * initSize, img.height * initSize)
   	};
+  	var streetLoc = new google.maps.LatLng(loc.streetGeo.latitude, loc.streetGeo.longitude);
+  	var locCenter = new google.maps.LatLng(loc.latitude, loc.longitude);
+  	var heading = google.maps.geometry.spherical.computeHeading(streetLoc,locCenter);
     var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(loc.latitude, loc.longitude),
+      position: new google.maps.geometry.spherical.computeOffset(streetLoc, 7, heading),
       map: map,
       title: loc.Address,
       icon: markerIcon
     });
     loc._mapMarker = marker;
-    if (loc.streetGeo === undefined && limit < 100) {
-    	streetGeoCode(loc);
-    	limit++;
-    }
     google.maps.event.addListener(marker, 'click', function() {return showDetails(loc)});
 }
 
@@ -175,9 +145,8 @@ ko.bindingHandlers.googlemap = {
             }
         map = new google.maps.Map(element, mapOptions);
 
-        var locations = viewModel.locations(); //value.filteredLocs();
+        var locations = viewModel.locations();
         infowindow = new google.maps.InfoWindow();
-        limit = 0;
         for (var loc in locations) {
             addMarker(locations[loc]);
         }
