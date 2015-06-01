@@ -36,6 +36,7 @@ Grunt
 npm install grunt-processhtml --save-dev
 npm install grunt-changed --save-dev
 
+
     Note that imagemin would not work on the jpeg image, so I compressed it manually and saved to the dist directory.
 
 http://learn.knockoutjs.com/#/?tutorial=webmail
@@ -47,3 +48,14 @@ http://stackoverflow.com/questions/19028299/putting-content-banner-above-the-fix
 http://www.prepbootstrap.com/bootstrap-template/searchnavbar
 http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
 http://jsfiddle.net/tyrsius/67kgm/
+http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
+view-source:http://www.geocodezip.com/commsoft_net_maps_directionsA.html
+http://gis.stackexchange.com/questions/29239/calculate-bearing-between-two-decimal-gps-coordinates
+http://gis.yohman.com/up206b/tutorials/4-2-zillow-web-setting-up-a-proxy/
+http://www.w3schools.com/ajax/tryit.asp?filename=tryajax_xml2
+http://wern-ancheta.com/blog/2014/03/20/getting-started-with-zillow-api/
+https://developer.yahoo.com/javascript/samples/proxy/php_proxy_simple.txt
+https://developer.yahoo.com/
+https://lambda.uta.edu/cse5335/spring13/project2.html
+http://www.the-art-of-web.com/javascript/ajax/
+http://help.dottoro.com/ljomfaxv.php

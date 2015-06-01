@@ -23,3 +23,4 @@ $("#contact").click(function() {
 $("#about").click(function() {
   alert('about clicked');
 });
+

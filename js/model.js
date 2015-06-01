@@ -1,5 +1,79 @@
-//var directionsService = null;
+var waitDialog = document.getElementById("pleaseWaitDialog");
 
+var zillowAPIUrl = 'proxy/proxy.php?' //http://annetteharper.info/proxy.php?'
+    + 'http://www.zillow.com/webservice/GetDeepSearchResults.htm?'
+	+ 'zws-id=X1-ZWz1esjan1mvbf_23up5';
+
+function addZillowData(loc, content, zillowData) {
+	var combinedContent = content
+		    	+ '<div class="panel-footer">' + 'Footer '
+		    	+ zillowData
+		    	+ '</div>';
+	infowindow.setContent(combinedContent);
+	infowindow.open(map, loc._mapMarker);
+}
+
+function getZillowData(loc, content){
+
+	var zillowUrl = zillowAPIUrl
+	   + '&address=' + encodeURIComponent(loc.Address)
+	   + '&citystatezip=' + encodeURIComponent('Madison IN 47250');
+	var xmlhttp = false;
+	addZillowData(loc, content, 'Retrieving Zillow Data');
+	var zillowRequestTimeout = setTimeout(function(){
+		hideWaitMessage();
+        addZillowData(loc, content, 'Request to Zillow Timed Out.');
+    }, 8000);
+    if (window.XMLHttpRequest) {
+     	try {
+			 xmlhttp = new XMLHttpRequest();
+     	} catch(err) {
+    		xmlhttp = false;
+    	}
+    } else if(window.ActiveXObject){
+    	try {
+    		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    	} catch(err) {
+    		try {
+    			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    		} catch(err) {
+    			xmlhttp = false;
+    		}
+    	}
+    }
+
+	if (xmlhttp) {
+		xmlhttp.onreadystatechange = function(){
+			switch (xmlhttp.readyState){
+				case 1: addZillowData(loc, content, 'Zillow request opened.'); break;
+				case 2: addZillowData(loc, content, 'Waiting for Zillow data.'); break;
+				case 3: addZillowData(loc, content, 'Receiving Zillow data.'); break;
+				case 4: addZillowData(loc, content, 'Waiting for Zillow data.');
+						if (xmlhttp.status==200) {
+							if (xmlhttp.responseXML.documentElement.getElementsByTagName("code")[0].innerHTML==0){
+								loc.county = xmlhttp.responseXML.documentElement.getElementsByTagName(
+									"FIPScounty")[0].innerHTML;
+								addZillowData(loc, content, 'County: '+ loc.county);
+							} else {
+								addZillowData(loc, content,
+									xmlhttp.responseXML.documentElement.getElementsByTagName("text")[0].innerHTML);
+							}
+							clearTimeout(zillowRequestTimeout);
+							hideWaitMessage();
+						}
+						break;
+			}
+		}
+		showWaitMessage();
+		xmlhttp.open("GET",zillowUrl,true);
+		xmlhttp.send(null);
+		return true;
+	} else {
+		addZillowData(loc, content, 'Zillow Request Failed.');
+		hideWaitMessage();
+		return false;
+	}
+}
 
 function getIconIndex(addressStyle){
 	switch (addressStyle) {
@@ -46,6 +120,7 @@ function showDetails(loc) {
 	var heading = loc["Address"];
 	var streetLoc = loc["streetGeo"].latitude + ', ' + loc["streetGeo"].longitude;
 	var c, nc, notes, rating;
+
 	if (loc["Historic Name of Resource"].length > 0){
 		heading = '<h4>' + loc["Historic Name of Resource"] + '</h4><br>' + heading;
 	}
@@ -58,6 +133,9 @@ function showDetails(loc) {
 		if (loc["#N/C"] != null) {
 			rating = rating + ", Non-Contributing (" + nc + ")"
 		}
+	}
+	if (loc["#N/C"] != null) {
+		rating = rating + " because " + loc["N/C Reason"];
 	}
 	if (loc["Approximate"] === "TRUE"){
 		dateBuilt = "~" + dateBuilt;
@@ -84,12 +162,10 @@ function showDetails(loc) {
         '<br>Date: '+ dateBuilt +
         '<br>NHL Rating: '+ rating +
         notes +
-    	'</div>' +
-    	'<div class="panel-footer">' + 'Footer' +
-    	streetLoc +
-    	'</div>';
+    	'</div>' ;
     infowindow.setContent(content);
     infowindow.open(map, loc._mapMarker);
+    getZillowData(loc, content);
 }
 
 function addMarker(loc) {
@@ -135,8 +211,17 @@ function centerMarker(loc){
 	showDetails(loc);
 }
 
+function showWaitMessage(){
+	$("#pleaseWaitDialog").modal('show');
+}
+
+function hideWaitMessage(){
+	$("#pleaseWaitDialog").modal('hide');
+}
+
 ko.bindingHandlers.googlemap = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+    	//showWaitMessage();
         var value = valueAccessor();
         var mapOptions = {
             zoom: value.zoom,
@@ -152,6 +237,7 @@ ko.bindingHandlers.googlemap = {
         }
         last_zoom = value.zoom;
         google.maps.event.addListener(map, 'zoom_changed', function(){resizeIcons(locations)});
+        //hideWaitMessage();
     }
 };
 
