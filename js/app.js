@@ -24,3 +24,12 @@ $("#about").click(function() {
   alert('about clicked');
 });
 
+var waitDialog = document.getElementById("pleaseWaitDialog");
+
+function showWaitMessage(){
+    $("#pleaseWaitDialog").modal('show');
+}
+
+function hideWaitMessage(){
+    $("#pleaseWaitDialog").modal('hide');
+}
