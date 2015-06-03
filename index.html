@@ -47,11 +47,11 @@
 
     <div class="container-fluid">
       <div class="row full-height">
-        <div id="MHDmap" class="mapContainer col-xs-7 col-sm-8 col-md-8 col-lg-9"
+        <div id="MHDmap" class="mapContainer col-xs-7 col-sm-8 col-md-9 col-lg-10"
              data-bind="googlemap: { filteredLocs: filteredLocs,
                         centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
         </div><!--/MHDmap -->
-        <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-4 col-lg-3">
+        <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
           <div id="addressFilter" class="panel panel-primary">
             <div class="panel-heading">Filter Address List</div>
             <div class="panel-body">
@@ -104,6 +104,28 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactsLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Contact</h4>
+          </div>
+          <div class="modal-body">
+            <address>
+              <strong>Annette Harper</strong><br>
+              212 West 2nd Street<br>
+              Madison, IN 47250<br>
+              <a href="mailto:#">m.annette.harper@gmail.com</a>
+            </address>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

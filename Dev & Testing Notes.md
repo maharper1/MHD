@@ -59,3 +59,5 @@ https://developer.yahoo.com/
 https://lambda.uta.edu/cse5335/spring13/project2.html
 http://www.the-art-of-web.com/javascript/ajax/
 http://help.dottoro.com/ljomfaxv.php
+http://www.sitepoint.com/php-xml-to-json-proxy/
+http://stackoverflow.com/questions/14931685/parsing-xml-data-in-zillow-and-other-api-websites

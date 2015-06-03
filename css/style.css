@@ -15,6 +15,10 @@ body {
 #houseNo {
   width: 40px;
 }
+#infowindow {
+  font-family: sans-serif;
+  font-size: 14px;
+}
 
 .footer {
   height: 30px;
