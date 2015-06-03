@@ -21,7 +21,7 @@ $("#contact").click(function() {
 });
 
 $("#about").click(function() {
-  alert('about clicked');
+  $("#aboutModal").modal('show');
 });
 
 var waitDialog = document.getElementById("pleaseWaitDialog");

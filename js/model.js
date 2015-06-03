@@ -89,6 +89,9 @@ function zillowCall(loc, API, APIParams, zillowBody) {
 							}
 							if (json.message.code==0){
 								var result = json.response.results.result;
+								if (Array.isArray(result)) {
+									result = result[0];
+								}
 								zillowBody.removeChild(zillowMsg);
 								formatFn(loc, result, zillowBody);
 							} else {
@@ -368,12 +371,18 @@ var mapViewModel = function() {
 	self.searchNo = ko.observable('');
 	self.searchSt = ko.observable('All');
 	self.searchDirs = ko.observableArray(["East","West",""]);
+	self.searchRating = ko.observableArray(["C","N/C"]);
+	self.searchStyle = ko.observable("All");
+	self.searchDate = ko.observable(2020);
     self.filteredLocs = ko.computed(function(){
 		return ko.utils.arrayFilter(self.locations(), function(loc) {
 			var found =
         		(self.searchNo().length == 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo()))
         		&& (self.searchDirs().indexOf(loc["Street Direction"]) > -1 )
-        		&& (self.searchSt() == 'All' || self.searchSt() == loc["Street"]);
+        		&& (self.searchSt() == 'All' || self.searchSt() == loc["Street"])
+        		&& (self.searchRating().indexOf(loc["NHL Rating"]) > -1 )
+        		&& (self.searchStyle() == 'All' || self.searchStyle() == loc["Style"])
+        		&& (loc["EndDate"] <= self.searchDate());
         	if (typeof loc._mapMarker != 'undefined'){
         		if (found) {
         			loc._mapMarker.setVisible(true);
@@ -383,6 +392,9 @@ var mapViewModel = function() {
         	}
         	return found;
 		});
+	})
+	self.filteredCount = ko.computed(function(){
+		return self.filteredLocs().length;
 	})
 }
 
