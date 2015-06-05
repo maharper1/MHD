@@ -27,7 +27,7 @@ module.exports = function(grunt) {
           minifyURLs: true,
         },
         files: {
-          'build/index.html': 'index.html'
+          'build/index.html': 'build/index.html'
         }
       }
     },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'images',
-          src: ['**/*.png'],
+          src: ['*.png'],
           dest: 'build/images',
           ext: '.png'
         }]
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         files: [{
             expand: true,
             cwd: 'images',
-            src: ['**/*.jpg'],
+            src: ['*.jpg'],
             dest: 'build/images',
             ext: '.jpg'
           }]
@@ -73,8 +73,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['js/**/*.js'],
-        dest: 'build/js/<%= pkg.name %>.js'
+        src: ['js/*.js'],
+        dest: 'js/combined/<%= pkg.name %>.js'
       }
     },
     uglify: {
@@ -95,7 +95,8 @@ module.exports = function(grunt) {
           console: true,
           module: true,
           document: true
-        }
+        },
+        ignores: ['js/data.js']
       }
     }
   });
@@ -110,7 +111,8 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-changed');
 
   grunt.registerTask('default',
-    ['changed:imagemin', 'changed:cssmin', 'changed:jshint', 'changed:concat',
+    ['changed:imagemin', 'changed:cssmin', 'changed:jshint',
+     'concat',
      'changed:uglify', 'changed:processhtml', 'changed:htmlmin']);
 
 };

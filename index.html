@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content=" Interactive Map of the Madison Historic District ">
@@ -10,22 +10,18 @@
     <link rel="icon" href="images/Icon.png">
     <title>Madison Historic District</title>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmL64rHJ7NwvrWViG_qkFyLqS1ieO7WP8&libraries=geometry,places">
-    </script>
-    <script src='js/libraries/knockout-3.3.0.js'></script>
-    <link href='bootstrap/css/bootstrap.css' rel="stylesheet">
-    <link href='bootstrap/css/bootstrap-theme.css' rel="stylesheet">
-    <link href='css/style.css' rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:700&text=MADISON%20HISTORIC%20DISTRICT' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <!-- build:js js/MHD.min.js -->
+    <!-- build:css css/style.min.css -->
+    <link href='css/style.css' rel="stylesheet">
     <!-- /build -->
+
   </head>
 
   <body>
     <div id="header"></div>
 
+    <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" id="topnavbar">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,6 +41,7 @@
       </div><!--/.nav-collapse -->
     </nav>
 
+    <!-- Map and Address List container -->
     <div class="container-fluid">
       <div class="row full-height">
         <div id="MHDmap" class="mapContainer col-xs-7 col-sm-8 col-md-9 col-lg-10"
@@ -58,12 +55,12 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <label for="rating">Contributing</label>
+                <label for="rating">Contributing &nbsp</label>
                 <span><input type="checkbox" name="rating" value="C" data-bind="checked: searchRating" /> Y</span>
                 <span><input type="checkbox" name="rating" value="N/C" data-bind="checked: searchRating" /> N</span>
               </div>
               <div class="row">
-                <label for="searchStyle">Style</label>
+                <label for="searchStyle">Style &nbsp</label>
                 <select id="searchStyle" data-bind="options: styles, value: searchStyle">
                 </select>
               </div>
@@ -73,17 +70,17 @@
                 <hr>
               </div>
               <div class="row">
-                <label for="houseNo">House Number</label>
+                <label for="houseNo">House Number &nbsp</label>
                 <input id="houseNo" data-bind="value: searchNo, valueUpdate: 'afterkeydown'" placeholder="All" />
               </div>
               <div class="row">
-                <label for="dirs">Direction</label>
+                <label for="dirs">Direction &nbsp</label>
                 <span><input type="checkbox" name="dirs" value="East" data-bind="checked: searchDirs" /> E</span>
                 <span><input type="checkbox" name="dirs" value="West" data-bind="checked: searchDirs" /> W</span>
                 <span><input type="checkbox" name="dirs" value="" data-bind="checked: searchDirs" /> N/S</span>
               </div>
               <div class="row">
-                <label for="searchSt">Street</label>
+                <label for="searchSt">Street &nbsp</label>
                 <select id="searchSt" data-bind="options: streets, value: searchSt"></select>
               </div>
             </div>
@@ -99,13 +96,14 @@
           </div><!--/propertyList-->
         </div><!--/propertyList-wrapper-->
       </div><!--/row-->
-
     </div>
+
     <div class="footer">
       <p>&copy; Annette Harper 2015</p>
     </div>
-    <div id=geoData></div>
 
+    <!-- Processing dialog -->
+    <!-- Keyboard input not allowed -->
     <div class="modal fade" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -121,6 +119,7 @@
       </div>
     </div>
 
+    <!-- Contact Modal Dialog -->
     <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactsLabel">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -143,6 +142,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- About Modal Dialog -->
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutLabel">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -162,18 +162,28 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmL64rHJ7NwvrWViG_qkFyLqS1ieO7WP8&libraries=geometry&callback=loadmap" defer>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src='bootstrap/js/bootstrap.js'></script>
+
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- build:js js/MHD.min.js -->
     <script src='js/data.js'></script>
     <script src="js/app.js"> </script>
     <script src="js/model.js"> </script>
+    <!-- /build -->
 
+    <!-- Google Analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-63656599-1', 'auto');
       ga('send', 'pageview');
