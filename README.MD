@@ -14,10 +14,14 @@ In order to gather data from Zillow, the web server where the application is dep
 
 ##Future Possibilities
 
-[ ] Improve data quality
+####Improve data quality
+
 Data transcribed from the Landmark Nomination may contain errors due to either my transcription or outdated documentation. I have re-catorgorized the building styles somewhat to limit the possible number of icons, and not being an expert, may have introduced errors in that way. The GPS coordinates obtained for some properties may be off a little and need manual correction.
 
-[ ] Move data into MySQL.
-[ ] Add Zillow "for Sale" data.
-[ ] Add ability for users to update/add information to properties.
-[ ] Add census information related to the occupants of the properties for census years that include actual addresses.
+####Move data into MySQL.
+
+####Add Zillow "for Sale" data.
+
+####Add ability for users to update/add information to properties.
+
+####Add census information related to the occupants of the properties for census years that include actual addresses.
