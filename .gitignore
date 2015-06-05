@@ -44,5 +44,5 @@ Temporary Items
 
  # Not needed on GitHub
 /node_modules
-/images/source
+/images/sources
 /js/combined
