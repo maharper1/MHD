@@ -49,39 +49,48 @@
                         centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
         </div><!--/MHDmap -->
         <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
-          <div id="addressFilter" class="panel panel-primary">
-            <div class="panel-heading">Filter Address List
-              <span class="badge" data-bind="text: filteredCount">##</span>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <label for="rating">Contributing &nbsp</label>
-                <span><input type="checkbox" name="rating" value="C" data-bind="checked: searchRating" /> Y</span>
-                <span><input type="checkbox" name="rating" value="N/C" data-bind="checked: searchRating" /> N</span>
+          <div class="panel=group" id="accordion">
+            <div id="addressFilter" class="panel panel-primary">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne" class="collapsed">
+                    Filter Address List
+                    <span>&nbsp</span>
+                    <span class="badge" data-bind="text: filteredCount"></span></a>
+                </h4>
               </div>
-              <div class="row">
-                <label for="searchStyle">Style &nbsp</label>
-                <select id="searchStyle" data-bind="options: styles, value: searchStyle">
-                </select>
-              </div>
-              <div class="row">
-                <label for="searchDate">Built Before &nbsp</label><span data-bind="text: searchDate"></span>
-                <input id="searchDate" type="range" min=1800 max=2020 step=10 data-bind="value: searchDate">
-                <hr>
-              </div>
-              <div class="row">
-                <label for="houseNo">House Number &nbsp</label>
-                <input id="houseNo" data-bind="value: searchNo, valueUpdate: 'afterkeydown'" placeholder="All" />
-              </div>
-              <div class="row">
-                <label for="dirs">Direction &nbsp</label>
-                <span><input type="checkbox" name="dirs" value="East" data-bind="checked: searchDirs" /> E</span>
-                <span><input type="checkbox" name="dirs" value="West" data-bind="checked: searchDirs" /> W</span>
-                <span><input type="checkbox" name="dirs" value="" data-bind="checked: searchDirs" /> N/S</span>
-              </div>
-              <div class="row">
-                <label for="searchSt">Street &nbsp</label>
-                <select id="searchSt" data-bind="options: streets, value: searchSt"></select>
+              <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="row">
+                    <label for="rating">Contributing &nbsp</label>
+                    <span><input type="checkbox" name="rating" value="C" data-bind="checked: searchRating" /> Y</span>
+                    <span><input type="checkbox" name="rating" value="N/C" data-bind="checked: searchRating" /> N</span>
+                  </div>
+                  <div class="row">
+                    <label for="searchStyle">Style &nbsp</label>
+                    <select id="searchStyle" data-bind="options: styles, value: searchStyle">
+                    </select>
+                  </div>
+                  <div class="row">
+                    <label for="searchDate">Built Before &nbsp</label><span data-bind="text: searchDate"></span>
+                    <input id="searchDate" type="range" min=1800 max=2020 step=10 data-bind="value: searchDate">
+                    <hr>
+                  </div>
+                  <div class="row">
+                    <label for="houseNo">House Number &nbsp</label>
+                    <input id="houseNo" data-bind="value: searchNo, valueUpdate: 'afterkeydown'" placeholder="All" />
+                  </div>
+                  <div class="row">
+                    <label for="dirs">Direction &nbsp</label>
+                    <span><input type="checkbox" name="dirs" value="East" data-bind="checked: searchDirs" /> E</span>
+                    <span><input type="checkbox" name="dirs" value="West" data-bind="checked: searchDirs" /> W</span>
+                    <span><input type="checkbox" name="dirs" value="" data-bind="checked: searchDirs" /> N/S</span>
+                  </div>
+                  <div class="row">
+                    <label for="searchSt">Street &nbsp</label>
+                    <select id="searchSt" data-bind="options: streets, value: searchSt"></select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

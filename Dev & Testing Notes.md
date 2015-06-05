@@ -10,9 +10,10 @@ ngrok 8080
 ```
 
 ##Build Automation
-Assuming node and the grunt cli are installed
+Assuming node and the grunt cli are installed...
+
 Grunt
-  I used grunt to minify files, optimize images, etc. I should add in processHTML so that I do not need to change the file references in index.html manually, but that will have to wait till next time :)
+  I used grunt to minify files, optimize images, etc. 
 
   Setting up grunt
     1. Open a command prompt, cd to the project folder.
@@ -27,17 +28,12 @@ Grunt
     10. run npm install grunt-contrib-watch --save-dev
     11. run npm install grunt-contrib-imagemin --save-dev
     12. run npm install grunt-contrib-cssmin --save-dev
-  // Tried both of the below, but neither helped with the jpeg optimiation problem noted below.
-  //  run npm install --save imagemin-mozjpeg
-  //  run npm install --save imagemin-jpegoptim
-  // I did not actually use compression, either.
-  // run npm install grunt-contrib-compress --save-dev
     13. run npm install grunt-contrib-htmlmin --save-dev
-npm install grunt-processhtml --save-dev
-npm install grunt-changed --save-dev
+    14. npm install grunt-processhtml --save-dev
+    15. npm install grunt-changed --save-dev
 
 
-    Note that imagemin would not work on the jpeg image, so I compressed it manually and saved to the dist directory.
+Below is a list of some of the websites that I refered to while building the app.
 
 http://learn.knockoutjs.com/#/?tutorial=webmail
 https://developers.google.com/maps/documentation/javascript/examples/marker-remove
