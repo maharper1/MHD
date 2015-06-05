@@ -42,5 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+ # Not needed on GitHub
 /node_modules
 /images/source
+/js/combined
