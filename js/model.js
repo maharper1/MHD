@@ -72,28 +72,28 @@ function zillowCall(loc, API, APIParams, zillowBody) {
 	var zillowRequestTimeout = setTimeout(function(){
 		hideWaitMessage();
 		appendText(zillowMsg, 'Request to Zillow Timed Out.');
-    }, 8000);
+	}, 8000);
 
-    // Create the proper request depending on the browser
-    if (window.XMLHttpRequest) {
-     	try {
-			 xmlhttp = new XMLHttpRequest();
-     	} catch(e1) {
-    		xmlhttp = false;
-    	}
-    } else if(window.ActiveXObject){
-    	try {
-    		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-    	} catch(e2) {
-    		try {
-    			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    		} catch(e3) {
-    			xmlhttp = false;
-    		}
-    	}
-    }
+	// Create the proper request depending on the browser
+	if (window.XMLHttpRequest) {
+	try {
+			xmlhttp = new XMLHttpRequest();
+		} catch(e1) {
+			xmlhttp = false;
+		}
+	} else if(window.ActiveXObject){
+		try {
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(e2) {
+			try {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch(e3) {
+				xmlhttp = false;
+			}
+		}
+	}
 
-    // Set the onreadystatechange function to handle messages returned from Zillow
+	// Set the onreadystatechange function to handle messages returned from Zillow
 	if (xmlhttp) {
 		xmlhttp.onreadystatechange = function(){
 			switch (xmlhttp.readyState){
@@ -175,30 +175,30 @@ function getZillowData(loc, zilCol){
 // Return the index for the architectual style.
 function getIconIndex(addressStyle){
 	switch (addressStyle) {
-	  case "Federal": return 0;
-	  case "Italianate": return 1;
-	  case "Vernacular: Shotgun": return 2;
-	  case "Art Deco": return 3;
-	  case "Barn": return 4;
-	  case "Bridge": return 5;
-	  case "Bungalow/Craftsman": return 6;
-	  case "Classical/Greek Revival": return 7;
-	  case "Colonial Revival": return 8;
-	  case "Commercial Style": return 9;
-	  case "Designed Landscape": return 10;
-	  case "Functional": return 11;
-	  case "Gothic Revival": return 12;
-	  case "Modern Movement": return 13;
-	  case "None": return 14;
-	  case "Other": return 15;
-	  case "Prairie School": return 16;
-	  case "Renaissance Revival": return 17;
-	  case "Tudor Revival": return 18;
-	  case "Victorian": return 19;
-	  case "Vernacular Landscape": return 20;
-	  case "Vernacular: Gable Front": return 21;
-	  case "Vernacular: Other": return 22;
-	  default: return 2;
+		case "Federal": return 0;
+		case "Italianate": return 1;
+		case "Vernacular: Shotgun": return 2;
+		case "Art Deco": return 3;
+		case "Barn": return 4;
+		case "Bridge": return 5;
+		case "Bungalow/Craftsman": return 6;
+		case "Classical/Greek Revival": return 7;
+		case "Colonial Revival": return 8;
+		case "Commercial Style": return 9;
+		case "Designed Landscape": return 10;
+		case "Functional": return 11;
+		case "Gothic Revival": return 12;
+		case "Modern Movement": return 13;
+		case "None": return 14;
+		case "Other": return 15;
+		case "Prairie School": return 16;
+		case "Renaissance Revival": return 17;
+		case "Tudor Revival": return 18;
+		case "Victorian": return 19;
+		case "Vernacular Landscape": return 20;
+		case "Vernacular: Gable Front": return 21;
+		case "Vernacular: Other": return 22;
+		default: return 2;
 	}
 }
 
@@ -220,8 +220,8 @@ function getStreetView(loc){
 		new google.maps.LatLng(loc.streetGeo.latitude, loc.streetGeo.longitude),
 		new google.maps.LatLng(loc.latitude, loc.longitude));
 	return 'http://maps.googleapis.com/maps/api/streetview?'+
-	      'size=200x200&location=' + loc.streetGeo.latitude+','+loc.streetGeo.longitude +
-	      '&heading='+bearing+'&fov=60&pitch=10';
+			'size=200x200&location=' + loc.streetGeo.latitude+','+loc.streetGeo.longitude +
+			'&heading='+bearing+'&fov=60&pitch=10';
 }
 
 // Function to format and add the National Landmark data and a streetView image
@@ -316,7 +316,7 @@ function formatHeading(loc, headRow){
 // Function to populate and display a marker's infowindow
 function showDetails(loc) {
 	// Create the basic structure with a heading row, two column body, and a row for notes data.
-	var iw = appendElement(null, "DIV", "infowindow", ["container-fluid"]);
+	var iw = appendElement(null, "DIV", "infowindow", ["infowindow", "container-fluid"]);
 	var headRow = appendElement(iw, "DIV", "headRow", ["row"]);
 	var bodyRow = appendElement(iw, "DIV", "bodyRow", ["row"]);
 	var NHLCol = appendElement(bodyRow, "DIV", "NHLData", ["col-xs-12", "col-sm-6"]);
@@ -330,7 +330,7 @@ function showDetails(loc) {
 
 	// Display the infowindow.
 	infowindow.setContent(iw);
-    infowindow.open(map, loc._mapMarker);
+	infowindow.open(map, loc._mapMarker);
 
 	// Call the function to add the data from Zillow. (Happens asyncronously.)
 	getZillowData(loc, zilCol);
@@ -345,35 +345,35 @@ function addMarker(loc) {
 	var initSize = 0.015;
 
 	// Set the image, initial size and scaledSize for the icon
-  	var markerIcon = {
-  		url: img.url,
-  		size: new google.maps.Size(img.width * initSize, img.height * initSize),
-  		scaledSize: new google.maps.Size(img.width * initSize, img.height * initSize)
-  	};
+	var markerIcon = {
+		url: img.url,
+		size: new google.maps.Size(img.width * initSize, img.height * initSize),
+		scaledSize: new google.maps.Size(img.width * initSize, img.height * initSize)
+	};
 
-  	// Instead of placing the map icon in the center of the property, place it just back
-  	//	from the street. In order to compute the proper location, get the center point and the
-  	//	street front from the stored data...
-  	var streetLoc = new google.maps.LatLng(loc.streetGeo.latitude, loc.streetGeo.longitude);
-  	var locCenter = new google.maps.LatLng(loc.latitude, loc.longitude);
-  	// ... compute the heading between those two points so that you can push the icon
-  	//	back from the street, toward the center of the property.
-  	var heading = google.maps.geometry.spherical.computeHeading(streetLoc,locCenter);
+	// Instead of placing the map icon in the center of the property, place it just back
+	//	from the street. In order to compute the proper location, get the center point and the
+	//	street front from the stored data...
+	var streetLoc = new google.maps.LatLng(loc.streetGeo.latitude, loc.streetGeo.longitude);
+	var locCenter = new google.maps.LatLng(loc.latitude, loc.longitude);
+	// ... compute the heading between those two points so that you can push the icon
+	//	back from the street, toward the center of the property.
+	var heading = google.maps.geometry.spherical.computeHeading(streetLoc,locCenter);
 
-  	// Create the map marker at a point offset by 7 from the street front point to align
-  	//	all of the markers evenly with the streets.
-    var marker = new google.maps.Marker({
-    	position: new google.maps.geometry.spherical.computeOffset(streetLoc, 7, heading),
-    	map: map,
-    	title: loc.Address,
-    	icon: markerIcon
-    });
+	// Create the map marker at a point offset by 7 from the street front point to align
+	//	all of the markers evenly with the streets.
+	var marker = new google.maps.Marker({
+	position: new google.maps.geometry.spherical.computeOffset(streetLoc, 7, heading),
+		map: map,
+		title: loc.Address,
+		icon: markerIcon
+	});
 
-    // Store the marker with the location data in the array
-    loc._mapMarker = marker;
+	// Store the marker with the location data in the array
+	loc._mapMarker = marker;
 
-    // Attach the showDetails function to the marker's click function.
-    google.maps.event.addListener(marker, 'click', function() {return showDetails(loc);});
+	// Attach the showDetails function to the marker's click function.
+	google.maps.event.addListener(marker, 'click', function() {return showDetails(loc);});
 }
 
 // Function to resize icons when the zoom changes. This is so that the house icons appear
@@ -433,52 +433,52 @@ function redrawMap(){
 
 // Knockout utility function for string matching
 ko.utils.stringStartsWith = function(string, startsWith) {
-    string = string || "";
-    if (startsWith.length > string.length) return false;
-    return string.substring(0, startsWith.length) === startsWith;
+	string = string || "";
+	if (startsWith.length > string.length) return false;
+	return string.substring(0, startsWith.length) === startsWith;
 };
 
 // Custom binding for Google Maps
 ko.bindingHandlers.googlemap = {
 	// On initialization, the map is created with the given parameters.
-    init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-        var value = valueAccessor();
-        var mapOptions = {
-            zoom: value.zoom,
-            center: new google.maps.LatLng(value.centerLat, value.centerLon),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
-            };
-        map = new google.maps.Map(element, mapOptions);
+	init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+		var value = valueAccessor();
+		var mapOptions = {
+			zoom: value.zoom,
+			center: new google.maps.LatLng(value.centerLat, value.centerLon),
+			mapTypeId: google.maps.MapTypeId.TERRAIN
+		};
+		map = new google.maps.Map(element, mapOptions);
 
-        // One infowindow is created, which is then reused for each marker.
-        infowindow = new google.maps.InfoWindow();
+		// One infowindow is created, which is then reused for each marker.
+		infowindow = new google.maps.InfoWindow();
 
-        // locations is set to the viewModel locations.
-        var locations = viewModel.locations();
+		// locations is set to the viewModel locations.
+		var locations = viewModel.locations();
 
-        // Add a map marker for each location
-        for (var i = 0; i < locations.length; i++) {
-            addMarker(locations[i]);
-        }
+		// Add a map marker for each location
+		for (var i = 0; i < locations.length; i++) {
+			addMarker(locations[i]);
+		}
 
-        // Initialize last_zoom global variable.
-        last_zoom = value.zoom;
+		// Initialize last_zoom global variable.
+		last_zoom = value.zoom;
 
-        // Add event for when the map's zoom is changed, so that the icons can be resized.
-        google.maps.event.addListener(map, 'zoom_changed', function(){resizeIcons(locations);});
-    }
+		// Add event for when the map's zoom is changed, so that the icons can be resized.
+		google.maps.event.addListener(map, 'zoom_changed', function(){resizeIcons(locations);});
+	}
 };
 
 // View Model definition
 var mapViewModel = function() {
 	var self = this;
 	// Create locations as an observable array of markerData.
-    self.locations = ko.observableArray(markerData);
+	self.locations = ko.observableArray(markerData);
 
-    // centerOnLoc is used when a marker or address link is clicked.
-    self.centerOnLoc = function(loc){centerMarker(loc);};
+	// centerOnLoc is used when a marker or address link is clicked.
+	self.centerOnLoc = function(loc){centerMarker(loc);};
 
-    // Observables are defined and given default values for each possible filter field.
+	// Observables are defined and given default values for each possible filter field.
 	self.searchNo = ko.observable('');
 	self.searchSt = ko.observable('All');
 	self.searchDirs = ko.observableArray(["East","West",""]);
@@ -488,29 +488,29 @@ var mapViewModel = function() {
 
 	// filteredLocs is used in the app in place of locations so that only markers and addresses
 	// that satisfy the filter are displayed.
-    self.filteredLocs = ko.computed(function(){
+	self.filteredLocs = ko.computed(function(){
 		return ko.utils.arrayFilter(self.locations(), function(loc) {
 
 			// found returns a loc if it satisfies all of the filters
 			var found =
-        		(self.searchNo().length === 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo())) &&
-        		(self.searchDirs().indexOf(loc["Street Direction"]) > -1 ) &&
-        		(self.searchSt() == 'All' || self.searchSt() == loc.Street) &&
-        		(self.searchRating().indexOf(loc["NHL Rating"]) > -1 ) &&
-        		(self.searchStyle() == 'All' || self.searchStyle() == loc.Style) &&
-        		(loc.EndDate <= self.searchDate());
+				(self.searchNo().length === 0 || ko.utils.stringStartsWith(loc["Street Number"], self.searchNo())) &&
+				(self.searchDirs().indexOf(loc["Street Direction"]) > -1 ) &&
+				(self.searchSt() == 'All' || self.searchSt() == loc.Street) &&
+				(self.searchRating().indexOf(loc["NHL Rating"]) > -1 ) &&
+				(self.searchStyle() == 'All' || self.searchStyle() == loc.Style) &&
+				(loc.EndDate <= self.searchDate());
 
-        	// The following code toggles the display of the actual map marker,
-        	//	display within the Address List is handled automatically by knockout.
-        	// TODO: Is there a way to accomplish via a custom knockout binding?
-        	if (typeof loc._mapMarker != 'undefined'){
-        		if (found) {
-        			loc._mapMarker.setVisible(true);
-        		} else {
-        			loc._mapMarker.setVisible(false);
-        		}
-        	}
-        	return found;
+			// The following code toggles the display of the actual map marker,
+			//	display within the Address List is handled automatically by knockout.
+			// TODO: Is there a way to accomplish via a custom knockout binding?
+			if (typeof loc._mapMarker != 'undefined'){
+				if (found) {
+					loc._mapMarker.setVisible(true);
+				} else {
+					loc._mapMarker.setVisible(false);
+				}
+			}
+			return found;
 		});
 	});
 

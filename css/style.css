@@ -8,18 +8,18 @@ body {
   height: calc(100% - 30px);
 }
 
-#header {
+.header {
   height: 100px;
   background-image: url(../images/Madison14May2015at100h.jpg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
-#houseNo {
+.houseNo {
   width: 40px;
 }
 
-#infowindow {
+.infowindow {
   font-family: sans-serif;
   font-size: 14px;
 }
@@ -30,7 +30,7 @@ body {
 }
 
 .container-fluid {
-	height: calc(100% - 51px - 100px);
+  height: calc(100% - 51px - 100px);
 }
 
 /* Remove padding from nested columns*/
@@ -39,7 +39,7 @@ body {
 }
 
 .full-height {
-	height: 100%;
+  height: 100%;
 }
 
 .mapContainer {
@@ -60,33 +60,33 @@ button {
   text-align: left;
 }
 
-#propertyList-wrapper {
+.propertyList-wrapper {
   padding: 6px;
-	height: 100%;
+  height: 100%;
 }
 
-#propertyList {
-	overflow-y: scroll;
-	height: calc(100% - 60px);
+.propertyList {
+  overflow-y: scroll;
+  height: calc(100% - 60px);
 }
 
-#searchStyle {
+.searchStyle {
   width: calc(100% - 45px);
 }
 
-#searchSt {
+.searchSt {
   width: calc(100% - 50px);
 }
 
 .panel-heading a:after {
-    font-family:'Glyphicons Halflings';
-    content:"\e114";
+    font-family: "Glyphicons Halflings";
+    content: "\e114";
     float: right;
     color: grey;
 }
 
 .panel-heading a.collapsed:after {
-    content:"\e080";
+    content: "\e080";
 }
 
 @media (max-width: 405px) {

@@ -1,4 +1,3 @@
-
 var $sideBar = $('#propertyList-wrapper');
 var $mapContainer = $('#MHDmap');
 

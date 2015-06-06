@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content=" Interactive Map of the Madison Historic District ">
@@ -19,7 +18,7 @@
   </head>
 
   <body>
-    <div id="header"></div>
+    <div class="header"></div>
 
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" id="topnavbar">
@@ -48,7 +47,7 @@
              data-bind="googlemap: { filteredLocs: filteredLocs,
                         centerLat: 38.735653, centerLon: -85.38157, zoom: 15 }">
         </div><!--/MHDmap -->
-        <div id="propertyList-wrapper" class="col-xs-5 col-sm-4 col-md-3 col-lg-2">
+        <div id="propertyList-wrapper" class="propertyList-wrapper col-xs-5 col-sm-4 col-md-3 col-lg-2">
           <div class="panel=group" id="accordion">
             <div id="addressFilter" class="panel panel-primary">
               <div class="panel-heading">
@@ -68,7 +67,8 @@
                   </div>
                   <div class="row">
                     <label for="searchStyle">Style &nbsp</label>
-                    <select id="searchStyle" data-bind="options: styles, value: searchStyle">
+                    <select id="searchStyle" class="searchStyle"
+                            data-bind="options: styles, value: searchStyle">
                     </select>
                   </div>
                   <div class="row">
@@ -78,7 +78,8 @@
                   </div>
                   <div class="row">
                     <label for="houseNo">House Number &nbsp</label>
-                    <input id="houseNo" data-bind="value: searchNo, valueUpdate: 'afterkeydown'" placeholder="All" />
+                    <input id="houseNo" class="houseNo"
+                            data-bind="value: searchNo, valueUpdate: 'afterkeydown'" placeholder="All" />
                   </div>
                   <div class="row">
                     <label for="dirs">Direction &nbsp</label>
@@ -88,13 +89,13 @@
                   </div>
                   <div class="row">
                     <label for="searchSt">Street &nbsp</label>
-                    <select id="searchSt" data-bind="options: streets, value: searchSt"></select>
+                    <select id="searchSt" class="searchSt" data-bind="options: streets, value: searchSt"></select>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div id="propertyList">
+          <div id="propertyList" class="propertyList">
             <ul class="list-unstyled" data-bind="foreach: filteredLocs">
               <li>
                 <button class="btn-link" role="link" data-bind="click: $parent.centerOnLoc">
