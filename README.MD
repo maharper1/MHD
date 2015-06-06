@@ -28,10 +28,13 @@ The project files are available at github.com/maharper1/MHD.
 
 The MHD application consists of html, javascript, and css files, plus a PHP proxy file. The web server to which the application is deployed must have PHP (with the cURL library) installed for the calls to Zillow to work.
 
-In addition, several libraries are refenced in the project files. These are 
+In addition, several libraries are refenced in the project files.
+
+These are 
  - Bootstrap 3.3.4
  - Knockout 3.3.0
  - jQuery 2.1.4
+
 And some APIs are called
  - Google Maps (including geometry library)
  - Google StreetView
@@ -48,7 +51,7 @@ Install MHD by following these steps:
 
 - To run, open the index.html file in the parent directory.
 
-A working version is installed at annetteharper.com/MHD.
+A working version is installed at http://annetteharper.com/MHD.
 
 General Usage Notes
 -------------------
